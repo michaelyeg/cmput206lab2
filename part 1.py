@@ -5,7 +5,9 @@ from matplotlib import pyplot as plt
 img = cv2.imread('1.jpg')
 
 kernel = -np.ones((3,3),np.float32)
+# Set center pixel value as 8
 kernel[1][1] = 8
+# Set pixel value as -1 elsewhere
 dst = cv2.filter2D(img,-1,kernel)
 
 plt.subplot(121),plt.imshow(img),plt.title('Original')
@@ -13,3 +15,5 @@ plt.xticks([]), plt.yticks([])
 plt.subplot(122),plt.imshow(dst),plt.title('Averaging')
 plt.xticks([]), plt.yticks([])
 plt.show()
+
+# Observe some edge enhancements
