@@ -1,18 +1,15 @@
 import cv2
-import numpy as np
 from matplotlib import pyplot as plt
 
 class image:
-    def __init__(self):
-        self.image = []
+    def __init__(self, filename):
+        self.image = cv2.imread(filename)
         self.filtered = []
         self.height = 0
         self.width = 0
         # Use the switch to identify if self.gaussianfilter() has been called before
         self.switch = 0
-
-    def load(self, filename):
-        self.image = cv2.imread(filename)
+        self.getdimension()
 
     # Get image dimension (Height and Width)
     def getdimension(self):
@@ -39,7 +36,6 @@ class image:
 
 
 def inpaint(damaged, mask):
-    damaged.getdimension()
     damaged.gaussianfilter()
     for i in range(0, damaged.height):
         for j in range(0, damaged.width):
@@ -55,12 +51,10 @@ def multi_inpaint(damaged, mask, iter):
 
 
 def main():
-    mask = image()
-    mask.load("damage_mask.bmp")
-    damaged = image()
-    damaged.load("damaged_cameraman.bmp")
+    mask = image("damage_mask.bmp")
+    damaged = image("damaged_cameraman.bmp")
     # Modify the iteration time to achieve better result.
-    multi_inpaint(damaged, mask, 20)
+    multi_inpaint(damaged, mask, 25)
     damaged.display()
 
 if __name__ == "__main__":
