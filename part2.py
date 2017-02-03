@@ -18,10 +18,10 @@ class image:
         self.filtered = cv2.GaussianBlur(self.image, (5, 5), 0)
         return
 
-    def display(self):
+    def display(self, title):
         plt.subplot(121), plt.imshow(self.image), plt.title('Original')
         plt.xticks([]), plt.yticks([])
-        plt.subplot(122), plt.imshow(self.filtered), plt.title('Filtered')
+        plt.subplot(122), plt.imshow(self.filtered), plt.title(title)
         plt.xticks([]), plt.yticks([])
         plt.show()
 
@@ -29,9 +29,9 @@ def main():
     img = image()
     img.load('noisy.jpg')
     img.medianfilter()
-    img.display()
+    img.display("Median Filter")
     img.gaussianfilter()
-    img.display()
+    img.display("Gaussian Filter")
     # Median filter did a better job
 
 if __name__ == "__main__":

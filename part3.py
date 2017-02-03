@@ -16,8 +16,6 @@ class image:
         dimension = self.image.shape
         self.height = dimension[0]
         self.width = dimension[1]
-        #print self.height
-        #print self.width
         return
 
     def gaussianfilter(self):

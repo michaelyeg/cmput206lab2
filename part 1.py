@@ -10,10 +10,14 @@ kernel[1][1] = 8
 # Set pixel value as -1 elsewhere
 dst = cv2.filter2D(img,-1,kernel)
 
-plt.subplot(121),plt.imshow(img),plt.title('Original')
+combined = cv2.addWeighted(img, 0.5, dst, 0.5, 0.0)
+
+plt.subplot(131), plt.imshow(img), plt.title('Before')
 plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(dst),plt.title('Averaging')
+plt.subplot(132), plt.imshow(dst), plt.title('After')
+plt.xticks([]), plt.yticks([])
+plt.subplot(133), plt.imshow(combined),plt.title('Combined')
 plt.xticks([]), plt.yticks([])
 plt.show()
 
-# Observe some edge enhancements
+# Observe some edge enhancements, darkened image
